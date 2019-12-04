@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.17.RELEASE'
+        springBootVersion = '2.2.1.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -12,8 +12,8 @@ buildscript {
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '1.5.17.RELEASE'
-    id 'org.flywaydb.flyway' version '4.2.0'
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
+    id 'org.flywaydb.flyway' version '6.1.0'
 }
 
 sourceCompatibility = 1.8
@@ -23,19 +23,20 @@ repositories {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-actuator')
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile('mysql:mysql-connector-java:5.1.46')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("mysql:mysql-connector-java:8.0.18")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 }
 
 flyway {
     url = "jdbc:mysql://localhost:3306/userprofile?user=root&useSSL=false"
     user = 'root'
-    password = ''
+    password = 'password'
 }
 
 bootRun.environment([
-        "MANAGEMENT_SECURITY_ENABLED": false
+        "MANAGEMENT_SECURITY_ENABLED": false,
+        "MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE": "*"
 ])

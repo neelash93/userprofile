@@ -24,11 +24,10 @@ public class UserProfile {
         this.email = email;
     }
 
-    public UserProfile() {
-    }
+    public UserProfile() {}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -37,7 +36,7 @@ public class UserProfile {
         this.id = id;
     }
 
-    @Column(nullable = false,length = 20)
+    @Column(nullable = false, length = 20)
     public String getFirstName() {
         return firstName;
     }
